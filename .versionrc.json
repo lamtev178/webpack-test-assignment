@@ -1,0 +1,16 @@
+{
+  "commitUrlFormat": "{{host}}/projects/CURS/repos/ofkr-front/commits/{{hash}}",
+  "compareUrlFormat": "{{host}}/projects/CURS/repos/ofkr-front/compare/diff?targetBranch=refs%2Ftags%2F{{previousTag}}&sourceBranch=refs%2Ftags%2F{{currentTag}}",
+  "types": [
+    { "type": "feat", "section": "Features" },
+    { "type": "fix", "section": "Bug Fixes" },
+    { "type": "test", "section": "Tests" },
+    { "type": "build", "section": "Build System" },
+    { "type": "refactor", "section": "Refactor" },
+    { "type": "docs", "section": "Documentation" },
+    { "type": "perf", "section": "Performance Issues" },
+    { "type": "style", "section": "Code Style Fixes" },
+    { "type": "deps", "section": "Dependencies" },
+    { "type": "ci", "hidden": true }
+  ]
+}
