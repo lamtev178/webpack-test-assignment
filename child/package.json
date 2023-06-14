@@ -1,0 +1,26 @@
+{
+  "name": "child_app",
+  "version": "0.0.0",
+  "private": true,
+  "devDependencies": {
+    "@types/react": "18.0.38",
+    "@types/react-dom": "18.0.11",
+    "copy-webpack-plugin": "^11.0.0",
+    "html-webpack-plugin": "5.5.1",
+    "serve": "14.2.0",
+    "webpack": "5.80.0",
+    "webpack-cli": "5.0.1",
+    "webpack-dev-server": "4.13.3"
+  },
+  "scripts": {
+    "start": "npm run generate:federated-types && webpack-cli serve",
+    "generate:federated-types": "download-types --outputDir ./federated-types",
+    "build": "webpack --mode production",
+    "serve": "serve dist -p 300",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  }
+}

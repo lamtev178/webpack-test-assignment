@@ -1,0 +1,7 @@
+{
+  "name": "child",
+  "exposes": {
+    "./App": "./src/App",
+    "./Button": "./src/Button"
+  }
+}

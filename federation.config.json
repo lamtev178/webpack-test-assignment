@@ -1,0 +1,9 @@
+{
+  "name": "app",
+  "exposes": {
+    "./App": "./src/App"
+  },
+  "remotes": {
+    "child": "child@http://localhost:3001/remoteEntry.js"
+  }
+}

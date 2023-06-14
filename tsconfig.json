@@ -10,5 +10,5 @@
       "*": ["./@mf-types/*"]
     }
   },
-  "include": ["src/**/*", "index.d.ts"]
+  "include": ["src/**/*", "index.d.ts", "./federated-types/*"]
 }
