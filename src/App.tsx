@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./styles/global.css";
 import "./assets/fonts/beermoney.css";
+import webpack from "./assets/images/webpack.svg";
 import { sum } from "./helpers/sum";
 import { typedSum } from "./helpers/typedSum";
 import { Link, Route, Routes } from "react-router-dom";
@@ -17,6 +18,7 @@ const App = () => {
 
   return (
     <div className="app">
+      <img src={webpack} />
       <ul>
         <li>
           <Link to="/">Main App</Link>

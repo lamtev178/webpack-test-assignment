@@ -14,9 +14,9 @@
   },
   "scripts": {
     "start": "npm run generate:federated-types && webpack-cli serve",
-    "generate:federated-types": "download-types --outputDir ./federated-types",
+    "generate:federated-types": "download-types -o ./federated-types",
     "build": "webpack --mode production",
-    "serve": "serve dist -p 300",
+    "serve": "serve dist -p 3001",
     "clean": "rm -rf dist"
   },
   "dependencies": {

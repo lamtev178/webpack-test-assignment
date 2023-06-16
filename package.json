@@ -7,7 +7,7 @@
     "dev": "MODE=development webpack-cli serve",
     "build": "npm run clean && npm run compile",
     "compile": "MODE=production webpack --config webpack.config.js",
-    "download-types": "download-types --outputDir ./federated-types",
+    "download-types": "download-types -o ./federated-types -s",
     "start": "serve ./dist",
     "clean": "shx rm -rf ./dist",
     "release": "standard-version"
@@ -18,14 +18,17 @@
   "devDependencies": {
     "@types/react-dom": "^18.2.5",
     "css-loader": "^6.8.1",
+    "css-minimizer-webpack-plugin": "^5.0.1",
+    "html-webpack-inline-svg-plugin": "^2.3.0",
     "html-webpack-plugin": "^5.5.3",
-    "module-federation-types-loader": "^1.1.1",
+    "module-federation-types-loader": "^1.1.4",
     "sass": "^1.63.4",
     "sass-loader": "^13.3.2",
     "serve": "14.2.0",
     "shx": "^0.3.4",
     "standard-version": "^9.5.0",
     "style-loader": "^3.3.3",
+    "terser-webpack-plugin": "^5.3.9",
     "webpack": "5.80.0",
     "webpack-cli": "5.0.1",
     "webpack-dev-server": "^4.13.3"

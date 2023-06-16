@@ -3,16 +3,45 @@ const webpack = require("webpack");
 const path = require("path");
 const { ModuleFederationPlugin } = require("webpack").container;
 const federationConfig = require("./federation.config.json");
+const HtmlWebpackInlineSVGPlugin = require("html-webpack-inline-svg-plugin");
+const TerserWebpackPlugin = require("terser-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 const pkg = require("./package.json");
+const tsconfig = require("./tsconfig.json");
 
 const dotenv = require("dotenv").config({
   path: path.join(__dirname, ".env"),
 });
 
+const mode = process.env.MODE || "none";
+const isProduction = mode === "production";
+
+const PUBLIC_PATH = process.env.PUBLIC_PATH || "/";
+
 module.exports = {
   entry: "./src/index.tsx",
   mode: process.env.MODE,
+  optimization: {
+    minimize: isProduction,
+    minimizer: [
+      new TerserWebpackPlugin({
+        terserOptions: {
+          compress: {
+            passes: 2,
+            drop_console: false,
+            drop_debugger: false,
+          },
+        },
+      }),
+      new CssMinimizerPlugin(),
+    ],
+    // @NOTE: fix HMR, see - https://stackoverflow.com/a/66197410
+    runtimeChunk: isProduction ? undefined : "single",
+    splitChunks: {
+      chunks: "all",
+    },
+  },
   module: {
     rules: [
       {
@@ -52,9 +81,12 @@ module.exports = {
     port: 3000,
   },
   plugins: [
+    new HtmlWebpackInlineSVGPlugin({
+      runPreEmit: true,
+    }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
-      publicPath: "auto",
+      publicPath: PUBLIC_PATH,
     }),
     new ModuleFederationPlugin({
       ...federationConfig,
