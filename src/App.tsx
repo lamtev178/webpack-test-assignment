@@ -5,8 +5,9 @@ import webpack from "./assets/images/webpack.svg";
 import { sum } from "./helpers/sum";
 import { typedSum } from "./helpers/typedSum";
 import { Link, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import Child from "./pages/Child";
+import Home from "~/pages/Home";
+import Child from "@/pages/Child";
+import axios from "axios";
 
 const App = () => {
   console.log(process.env.URL);
@@ -14,6 +15,14 @@ const App = () => {
   useEffect(() => {
     console.log(sum(3, 5));
     console.log(typedSum(3, 6));
+    (async function(){
+      try{
+        const res = await axios.get("/api")
+        console.log(res);
+      }catch(e){
+        console.log(e);
+      }
+    })()
   }, []);
 
   return (

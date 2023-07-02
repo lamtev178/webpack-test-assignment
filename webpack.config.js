@@ -6,6 +6,7 @@ const federationConfig = require("./federation.config.json");
 const HtmlWebpackInlineSVGPlugin = require("html-webpack-inline-svg-plugin");
 const TerserWebpackPlugin = require("terser-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const {resolveTsAliases} = require("resolve-ts-aliases");
 
 const pkg = require("./package.json");
 const tsconfig = require("./tsconfig.json");
@@ -67,6 +68,7 @@ module.exports = {
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
+    alias: resolveTsAliases(path.resolve("tsconfig.json")),
   },
   output: {
     path: path.resolve(__dirname, "./dist"),
@@ -75,6 +77,14 @@ module.exports = {
   devServer: {
     static: {
       directory: path.join(__dirname, "public"),
+    },
+    proxy: {
+      '/api': {
+        target: 'https://api.github.com',
+        pathRewrite: { '^/api': '' },
+        changeOrigin: true,
+        secure: false,
+      },
     },
     historyApiFallback: true,
     compress: true,
